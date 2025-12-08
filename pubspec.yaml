@@ -29,10 +29,14 @@ dependencies:
   # Firebase (Auth)
   firebase_core: ^2.24.2
   firebase_auth: ^4.17.9
-  # Utilities
+  # UUID Generation
   uuid: ^4.4.0
   # SVG Support
   flutter_svg: ^2.0.10
+  # Environment Variables
+  flutter_dotenv: ^5.2.1
+  # Image Caching
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -45,3 +49,5 @@ flutter:
   assets:
       - assets/images/
       - assets/icons/
+      - .env
+

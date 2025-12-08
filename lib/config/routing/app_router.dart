@@ -1,4 +1,5 @@
 import 'package:crypto_tracker/config/routing/routes.dart';
+import 'package:crypto_tracker/features/home/presentation/screens/home_screen.dart';
 import 'package:crypto_tracker/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:crypto_tracker/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const Scaffold());
 
       case Routes.home:
-        return MaterialPageRoute(builder: (_) => const Scaffold());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       case Routes.market:
         return MaterialPageRoute(builder: (_) => const Scaffold());

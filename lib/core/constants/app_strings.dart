@@ -11,4 +11,27 @@ class AppStrings {
   static const String register = 'Register';
   static const String login = 'Login';
 
+  // Balance Card
+  static const String currentBalance = 'Current Balance';
+  static const String weeklyProfitLabel = 'Weekly Profit';
+  static const String defaultBalance = '143,421.20';
+  static const String defaultProfitPercentage = '2.35%';
+
+  // Home Header
+  static const String greeting = 'Hi, ';
+  static const String waveEmoji = ' 👋';
+  static const String defaultAvatar = 'https://via.placeholder.com/150';
+
+  // Global Market
+  static const String marketOverview = 'Market Overview';
+  static const String marketCap = 'Market Cap';
+  static const String volume24h = '24h Volume';
+  static const String btcDominance = 'BTC Dominance';
+  static const String activeCoins = 'Active Coins';
+
+  static const String topGainers = 'Top Gainers';
+
+  static const String trendingNow = 'Trending Now';
+  static const String viewAll = 'View all';
+
 }

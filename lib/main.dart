@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'config/routing/app_router.dart';
 import 'config/routing/routes.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+import 'core/di/dependency_injection.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: ".env");
+  initializeDependencies();
+
   runApp(const MyApp());
 }
 
@@ -18,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: Routes.splash,
+      initialRoute: Routes.home,
       onGenerateRoute: AppRouter().generateRoute,
     );
   }
