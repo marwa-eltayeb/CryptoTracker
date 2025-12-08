@@ -26,7 +26,7 @@ class TrendingCoinItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 210,
+      width: 220,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.white,
