@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
               if (state is HomeLoading) {
                 return const Center(
                   child: CircularProgressIndicator(
-                    color: Color(0xFF1E3A5F),
+                    color: AppColors.primary,
                   ),
                 );
               }
