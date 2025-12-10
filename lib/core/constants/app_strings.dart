@@ -33,5 +33,12 @@ class AppStrings {
 
   static const String trendingNow = 'Trending Now';
   static const String viewAll = 'View all';
+  static const String errorLoadingData = 'Error loading data';
+
+  static const String errorLoadingCoins = 'Error loading coins';
+  static const String searchError = 'Search error';
+
+
+
 
 }
