@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../config/theme/app_colors.dart';
 
 class NavBarItem extends StatelessWidget {
@@ -20,26 +19,29 @@ class NavBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? AppColors.primary : Colors.grey,
-            size: 24,
-          ),
-
-          const SizedBox(height: 4),
-
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
               color: isSelected ? AppColors.primary : Colors.grey,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              size: 24,
             ),
-          ),
-        ],
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                color: isSelected ? AppColors.primary : Colors.grey,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

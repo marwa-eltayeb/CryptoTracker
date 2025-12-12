@@ -1,6 +1,7 @@
 import 'package:crypto_tracker/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../config/routing/routes.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/app_style.dart';
 import '../../../../core/di/dependency_injection.dart';
@@ -165,7 +166,9 @@ class _MarketScreenState extends State<MarketScreen> {
                               rank: coin.marketCapRank,
                               price: '--',
                               priceChange: 0,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushNamed(context, Routes.details, arguments: coin.id,);
+                              },
                             );
                           },
                         );
@@ -185,7 +188,9 @@ class _MarketScreenState extends State<MarketScreen> {
                               rank: coin.marketCapRank,
                               price: '\$${coin.currentPrice.toStringAsFixed(2)}',
                               priceChange: coin.priceChangePercentage24h,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushNamed(context, Routes.details, arguments: coin.id,);
+                              },
                             );
                           },
                         );

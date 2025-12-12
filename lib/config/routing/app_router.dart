@@ -30,7 +30,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const MarketScreen());
 
       case Routes.details:
-        return MaterialPageRoute(builder: (_) => const DetailsScreen());
+        final coinId = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => DetailsScreen(coinId: coinId));
 
       case Routes.portfolio:
         return MaterialPageRoute(builder: (_) => const PortfolioScreen());

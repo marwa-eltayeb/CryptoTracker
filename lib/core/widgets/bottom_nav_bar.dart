@@ -1,3 +1,4 @@
+// bottom_nav_bar.dart
 import 'package:flutter/material.dart';
 import '../../config/routing/routes.dart';
 import '../../config/theme/app_colors.dart';
@@ -12,34 +13,10 @@ class BottomNavBar extends StatelessWidget {
     required this.currentIndex,
   });
 
-  void _navigateToScreen(BuildContext context, int index) {
-
-    if (currentIndex == index) return;
-
-    String routeName;
-    switch (index) {
-      case 0:
-        routeName = Routes.home;
-        break;
-      case 1:
-        routeName = Routes.market;
-        break;
-      case 2:
-        routeName = Routes.portfolio;
-        break;
-      case 3:
-        routeName = Routes.settings;
-        break;
-      default:
-        return;
-    }
-
-    Navigator.pushNamedAndRemoveUntil(context, routeName, (route) => false);
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: false,
       child: Container(
         height: 70,
         decoration: BoxDecoration(
@@ -59,25 +36,41 @@ class BottomNavBar extends StatelessWidget {
               icon: Icons.home,
               label: AppStrings.homeScreenTitle,
               isSelected: currentIndex == 0,
-              onTap: () => _navigateToScreen(context, 0),
+              onTap: () {
+                if (currentIndex != 0) {
+                  Navigator.pushReplacementNamed(context, Routes.home);
+                }
+              },
             ),
             NavBarItem(
               icon: Icons.bar_chart,
               label: AppStrings.marketScreenTitle,
               isSelected: currentIndex == 1,
-              onTap: () => _navigateToScreen(context, 1),
+              onTap: () {
+                if (currentIndex != 1) {
+                  Navigator.pushReplacementNamed(context, Routes.market);
+                }
+              },
             ),
             NavBarItem(
               icon: Icons.business_center,
               label: AppStrings.portfolioScreenTitle,
               isSelected: currentIndex == 2,
-              onTap: () => _navigateToScreen(context, 2),
+              onTap: () {
+                if (currentIndex != 2) {
+                  Navigator.pushReplacementNamed(context, Routes.portfolio);
+                }
+              },
             ),
             NavBarItem(
               icon: Icons.settings,
               label: AppStrings.settingsScreenTitle,
               isSelected: currentIndex == 3,
-              onTap: () => _navigateToScreen(context, 3),
+              onTap: () {
+                if (currentIndex != 3) {
+                  Navigator.pushReplacementNamed(context, Routes.settings);
+                }
+              },
             ),
           ],
         ),
