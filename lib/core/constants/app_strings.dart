@@ -1,5 +1,11 @@
 class AppStrings {
 
+  // Screen Titles
+  static const String homeScreenTitle = 'Home';
+  static const String marketScreenTitle = 'Market';
+  static const String portfolioScreenTitle = 'Portfolio';
+  static const String settingsScreenTitle = 'Settings';
+
   // Onboarding
   static const String welcomeToCryptoX = 'Welcome To Crypto X';
   static const String welcomeTo = 'Welcome To ';
@@ -38,6 +44,21 @@ class AppStrings {
   static const String errorLoadingCoins = 'Error loading coins';
   static const String searchError = 'Search error';
 
+  // CoinItem
+  static const String rankLabel = 'Rank #';
+  static const String notAvailable = 'N/A';
+
+  // Market
+  static const String cryptoMarket = 'Crypto Market';
+  static const String filterTapped = 'Filter tapped';
+  static const String searchCoinsHint = 'Search coins...';
+  static const String noResultsFound = 'No results found';
+  static const String tryDifferentCoin = 'Try searching for a different coin';
+  static const String categoryAll = 'All';
+  static const String categoryDeFi = 'DeFi';
+  static const String categoryNFT = 'NFT';
+  static const String categoryGaming = 'Gaming';
+  static const String categoryMetaverse = 'Metaverse';
 
 
 

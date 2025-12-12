@@ -10,10 +10,10 @@ class APIConstants {
   static const String trendingCoins = '/search/trending';   // Trending coins list
   static const String topGainers = '/coins/markets';        // Top gainers
 
-  // // MARKET SCREEN
-  // static const String coinMarkets = '/coins/markets';      // Coin list
-  // static const String searchCoins = '/search';             // Search coins by keyword
-  //
+  // MARKET SCREEN
+  static const String coinMarkets = '/coins/markets';      // Coin list
+  static const String searchCoins = '/search';             // Search coins by keyword
+
   // // COIN DETAILS SCREEN
   // static const String coinDetails = '/coins/{id}';         // Detailed coin information
   // static const String coinMarketChart = '/coins/{id}/market_chart';   // Price chart data
@@ -22,3 +22,4 @@ class APIConstants {
   // static const String simplePrice = '/simple/price';       // Live prices for holdings
 
 }
+
