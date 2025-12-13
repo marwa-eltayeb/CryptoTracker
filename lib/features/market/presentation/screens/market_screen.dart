@@ -24,6 +24,7 @@ class MarketScreen extends StatefulWidget {
 class _MarketScreenState extends State<MarketScreen> {
 
   int _selectedCategoryIndex = 0;
+  final ScrollController _scrollController = ScrollController();
 
   late final List<String> _categories = [
     AppStrings.categoryAll,
@@ -36,6 +37,7 @@ class _MarketScreenState extends State<MarketScreen> {
 
   @override
   void dispose() {
+    _scrollController.dispose();
     _searchController.dispose();
     super.dispose();
   }
@@ -53,7 +55,6 @@ class _MarketScreenState extends State<MarketScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 // Header
                 Padding(
                   padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
@@ -167,7 +168,7 @@ class _MarketScreenState extends State<MarketScreen> {
                               price: '--',
                               priceChange: 0,
                               onTap: () {
-                                Navigator.pushNamed(context, Routes.details, arguments: coin.id,);
+                                Navigator.pushNamed(context, Routes.details, arguments: coin.id);
                               },
                             );
                           },
@@ -176,23 +177,61 @@ class _MarketScreenState extends State<MarketScreen> {
 
                       if (state is CoinListLoaded) {
                         final coins = cubit.allCoins;
-                        return ListView.builder(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          itemCount: coins.length,
-                          itemBuilder: (context, index) {
-                            final coin = coins[index];
-                            return CoinItem(
-                              name: coin.name,
-                              symbol: coin.symbol,
-                              imageUrl: coin.image,
-                              rank: coin.marketCapRank,
-                              price: '\$${coin.currentPrice.toStringAsFixed(2)}',
-                              priceChange: coin.priceChangePercentage24h,
-                              onTap: () {
-                                Navigator.pushNamed(context, Routes.details, arguments: coin.id,);
-                              },
-                            );
+                        final showLoadingIndicator = cubit.isLoadingMore;
+                        final paginationError = cubit.paginationError;
+
+                        return NotificationListener<ScrollNotification>(
+                          onNotification: (ScrollNotification scrollInfo) {
+                            if (scrollInfo is ScrollUpdateNotification) {
+                              final pixels = scrollInfo.metrics.pixels;
+                              final maxScroll = scrollInfo.metrics.maxScrollExtent;
+                              // Trigger load more when scrolled to 90% of the list
+                              if (pixels >= maxScroll * 0.9 && cubit.hasMoreData && !cubit.isLoadingMore && paginationError == null) {
+                                cubit.loadMoreCoins();
+                              }
+                            }
+                            return false;
                           },
+                          child: ListView.builder(
+                            controller: _scrollController,
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            itemCount: coins.length + (showLoadingIndicator ? 1 : 0) + (paginationError != null ? 1 : 0),
+                            itemBuilder: (context, index) {
+                              // Show loading indicator for paginationImplement infinite scroll pagination for market coins
+                              if (showLoadingIndicator && index == coins.length) {
+                                return const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 32),
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.primary,
+                                    ),
+                                  ),
+                                );
+                              }
+
+                              // Show error message for pagination error
+                              if (paginationError != null && index == coins.length) {
+                                return ErrorState(
+                                  title: AppStrings.errorLoadingCoins,
+                                  message: paginationError,
+                                  onRetry: () => cubit.loadMoreCoins(),
+                                );
+                              }
+
+                              final coin = coins[index];
+                              return CoinItem(
+                                name: coin.name,
+                                symbol: coin.symbol,
+                                imageUrl: coin.image,
+                                rank: coin.marketCapRank,
+                                price: '\$${coin.currentPrice.toStringAsFixed(2)}',
+                                priceChange: coin.priceChangePercentage24h,
+                                onTap: () {
+                                  Navigator.pushNamed(context, Routes.details, arguments: coin.id);
+                                },
+                              );
+                            },
+                          ),
                         );
                       }
 
