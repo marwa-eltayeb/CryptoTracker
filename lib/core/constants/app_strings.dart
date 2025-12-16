@@ -97,4 +97,16 @@ class AppStrings {
   static const String navigateToFaqSupport = 'FAQ & Support';
   static const String navigateToLanguage = 'Navigate to Language settings';
 
+  // Portfolio
+  static const String totalValue = 'Total Value';
+  static const String today = 'Today';
+
+  // Month Labels
+  static const String monthNov = 'Nov';
+  static const String monthDec = 'Dec';
+  static const String monthJan = 'Jan';
+  static const String monthFeb = 'Feb';
+  static const String monthMar = 'Mar';
+  static const String monthApl = 'Apl';
+
 }

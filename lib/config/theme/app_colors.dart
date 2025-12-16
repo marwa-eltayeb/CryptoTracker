@@ -58,4 +58,17 @@ class AppColors {
 
   static const Color settingsBackground = Color(0xFFF5F7FA);
 
+  // Portfolio/Holdings
+  static const Color black04Shadow = Color(0x0A000000);
+
+  // Pie Chart Colors
+  static const Color pieChartPurple = Color(0xFF8B5CF6);
+  static const Color pieChartCyan = Color(0xFF06B6D4);
+  static const Color pieChartPink = Color(0xFFFB7185);
+
+  // Portfolio Value Card
+  static const Color portfolioGradientStart = Color(0xFF2E4A6F);
+  static const Color portfolioGradientEnd = Color(0xFF3D5A8F);
+  static const Color white80 = Color.fromRGBO(255, 255, 255, 0.8);
+
 }
