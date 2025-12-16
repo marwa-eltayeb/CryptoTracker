@@ -79,4 +79,22 @@ class AppStrings {
 
   static const String noChartDataAvailable = 'No chart data available';
 
+  // Settings Screen
+  static const String settings = 'Settings';
+  static const String general = 'General';
+  static const String myAccount = 'My Account';
+  static const String billingPayment = 'Billing/Payment';
+  static const String faqSupport = 'FAQ & Support';
+  static const String settingsSection = 'Settings';
+  static const String language = 'Language';
+  static const String darkMode = 'Dark Mode';
+  static const String sophiaIsabella = 'Sophia Isabella';
+  static const String profileImagePath = 'assets/images/profile.jpg';
+
+  // Settings Actions
+  static const String navigateToMyAccount = 'Navigate to My Account';
+  static const String navigateToBillingPayment = 'Billing/Payment';
+  static const String navigateToFaqSupport = 'FAQ & Support';
+  static const String navigateToLanguage = 'Navigate to Language settings';
+
 }

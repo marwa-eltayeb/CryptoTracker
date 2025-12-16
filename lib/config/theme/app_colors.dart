@@ -54,4 +54,8 @@ class AppColors {
   // Shadow
   static const Color blackShadow = Color(0x0D000000);
 
+  static const Color black10Shadow = Color(0x1A000000);
+
+  static const Color settingsBackground = Color(0xFFF5F7FA);
+
 }

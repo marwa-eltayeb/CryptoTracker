@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppTextStyles {
 
+  // BOLD 48
+  static const TextStyle bold48 = TextStyle(
+    fontSize: 48,
+    fontWeight: FontWeight.w700,
+  );
+
   // BOLD 32
   static const TextStyle bold32 = TextStyle(
     fontSize: 32,
@@ -19,6 +25,18 @@ class AppTextStyles {
   static const TextStyle bold12 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w700,
+  );
+
+  // SEMI-BOLD 28
+  static const TextStyle semiBold28 = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+  );
+
+  // SEMI-BOLD 22
+  static const TextStyle semiBold22 = TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
   );
 
   // SEMI-BOLD 14
@@ -43,6 +61,12 @@ class AppTextStyles {
   static const TextStyle semiBold16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
+  );
+
+  // MEDIUM 18
+  static const TextStyle medium18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
   );
 
   // REGULAR 15
