@@ -29,4 +29,29 @@ class AppColors {
   static const Color white20 = Color.fromRGBO(255, 255, 255, 0.2);
   static const Color white70 = Color.fromRGBO(255, 255, 255, 0.7);
 
+  // Buttons
+  static const Color secondaryButtonBg = Color(0xFFFFE5E5);
+  static const Color secondaryButtonText = Color(0xFFFF6B6B);
+
+  // Chart Colors
+  static const Color chartGridLine = Color(0x33999999);
+  static const Color chartAxisLabel = Color(0xFF64748B);
+  static const Color chartLineStart = Color(0xFF2E4A6F);
+  static const Color chartLineEnd = Color(0xFF3D5A8F);
+  static const Color chartGradientStart = Color(0x4D2E4A6F);
+  static const Color chartGradientEnd = Color(0x0D3D5A8F);
+  static const Color chartTooltip = Color(0xFFFF8C42);
+
+  // Additional Colors
+  static const Color greyBorder = Color(0x33999999);
+  static const Color infoBlue = Color(0xFF3B82F6);
+  static const Color textSecondary = Color(0xFF64748B);
+
+  // Background colors
+  static const Color backgroundGrey = Color(0xFFF8F9FA);
+  static const Color greyText = Color(0xFF94A3B8);
+
+  // Shadow
+  static const Color blackShadow = Color(0x0D000000);
+
 }

@@ -6,20 +6,20 @@ class APIConstants {
   static final String apiKey = (dotenv.env['API_KEY'] ?? '');
 
   // HOME SCREEN
-  static const String marketOverview = '/global';           // Market overview statistics
-  static const String trendingCoins = '/search/trending';   // Trending coins list
-  static const String topGainers = '/coins/markets';        // Top gainers
+  static const String marketOverview = '/global';                         // Market overview statistics
+  static const String trendingCoins = '/search/trending';                 // Trending coins list
+  static const String topGainers = '/coins/markets';                      // Top gainers
 
   // MARKET SCREEN
-  static const String coinMarkets = '/coins/markets';      // Coin list
-  static const String searchCoins = '/search';             // Search coins by keyword
+  static const String coinMarkets = '/coins/markets';                     // Coin list
+  static const String searchCoins = '/search';                            // Search coins by keyword
 
-  // // COIN DETAILS SCREEN
-  // static const String coinDetails = '/coins/{id}';         // Detailed coin information
-  // static const String coinMarketChart = '/coins/{id}/market_chart';   // Price chart data
-  //
-  // //  PORTFOLIO SCREEN
-  // static const String simplePrice = '/simple/price';       // Live prices for holdings
+  // COIN DETAILS SCREEN
+  static const String coinDetails = '/coins/{id}';                       // Detailed coin information
+  static const String coinMarketChart = '/coins/{id}/market_chart';      // Price chart data
+
+  // PORTFOLIO SCREEN
+  // static const String simplePrice = '/simple/price';                  // Live prices for holdings
 
 }
 

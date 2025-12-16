@@ -42,7 +42,9 @@ class AppStrings {
   static const String errorLoadingData = 'Error loading data';
 
   static const String errorLoadingCoins = 'Error loading coins';
+  static const String errorLoadingCoinDetails = 'Error loading coin details';
   static const String searchError = 'Search error';
+  static const String failedToLoadChart = "Failed to load chart";
 
   // CoinItem
   static const String rankLabel = 'Rank #';
@@ -60,6 +62,21 @@ class AppStrings {
   static const String categoryGaming = 'Gaming';
   static const String categoryMetaverse = 'Metaverse';
 
+  // Coin Details
+  static const String coinDetails = 'Coin Details';
+  static const String chartDataPlaceholder = 'Chart data will load from API';
+  static const String statistics = 'Statistics';
+  static const String currentPriceLabel = 'Current Price';
+  static const String marketCapLabel = 'Market Cap';
+  static const String volume24hLabel = 'Volume 24h';
+  static const String availableSupplyLabel = 'Available Supply';
+  static const String maxSupplyLabel = 'Max Supply';
+  static const String about = 'About';
+  static const String sell = 'Sell';
+  static const String buy = 'Buy';
+  static const String sellAction = 'Sell action';
+  static const String buyAction = 'Buy action';
 
+  static const String noChartDataAvailable = 'No chart data available';
 
 }
