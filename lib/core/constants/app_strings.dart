@@ -45,6 +45,7 @@ class AppStrings {
   static const String errorLoadingCoinDetails = 'Error loading coin details';
   static const String searchError = 'Search error';
   static const String failedToLoadChart = "Failed to load chart";
+  static const String errorLoadingPortfolio = 'Error loading Portfolio';
 
   // CoinItem
   static const String rankLabel = 'Rank #';
@@ -100,6 +101,8 @@ class AppStrings {
   // Portfolio
   static const String totalValue = 'Total Value';
   static const String today = 'Today';
+  static const String myHoldings = 'My Holdings';
+  static const String recentTransactions = 'Recent Transactions';
 
   // Month Labels
   static const String monthNov = 'Nov';
@@ -108,5 +111,34 @@ class AppStrings {
   static const String monthFeb = 'Feb';
   static const String monthMar = 'Mar';
   static const String monthApl = 'Apl';
+
+  // Add to Portfolio Dialog
+  static const String portfolioLimitReached = 'Portfolio Limit Reached';
+  static const String portfolioLimitMessage = 'different coins in your portfolio. Please remove a coin before adding a new one.';
+  static const String youCanOnlyHaveUpTo = 'You can only have up to ';
+  static const String gotIt = 'Got it';
+  static const String addToPortfolio = 'Add to Portfolio';
+  static const String currentPrice = 'Current Price:';
+  static const String amount = 'Amount';
+  static const String enterAmount = 'Enter amount of ';
+  static const String totalValueLabel = 'Total Value:';
+  static const String add = 'Add';
+  static const String cancel = 'Cancel';
+  static const String addedToPortfolio = 'Added ';
+  static const String toPortfolio = ' to portfolio';
+  static const String pleaseEnterValidAmount = 'Please enter a valid amount';
+
+  // Empty Holdings
+  static const String noHoldingsYet = 'No Holdings Yet';
+  static const String startBuildingPortfolio = 'Start building your crypto portfolio by adding coins from the market.';
+  static const String browseMarket = 'Browse Market';
+
+  // Remove Holding Dialog
+  static const String removeHolding = 'Remove Holding';
+  static const String areYouSureRemove = 'Are you sure you want to remove ';
+  static const String fromYourPortfolio = ' from your portfolio?';
+  static const String remove = 'Remove';
+  static const String removedFromPortfolio = 'Removed ';
+
 
 }

@@ -56,7 +56,7 @@ class AppColors {
 
   static const Color black10Shadow = Color(0x1A000000);
 
-  static const Color settingsBackground = Color(0xFFF5F7FA);
+  static const Color greyBackground = Color(0xFFF5F7FA);
 
   // Portfolio/Holdings
   static const Color black04Shadow = Color(0x0A000000);

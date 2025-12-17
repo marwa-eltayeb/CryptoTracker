@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../config/theme/app_colors.dart';
+import '../../../../config/theme/app_style.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/bottom_nav_bar.dart';
-import '../../data/models/holding.dart';
-import '../../data/models/transaction.dart';
+import '../../../../core/widgets/error_state.dart';
+import '../cubit/portfolio_cubit.dart';
+import '../cubit/portfolio_state.dart';
+import '../widgets/empty_holdings.dart';
 import '../widgets/portfolio_value_card.dart';
 import '../widgets/month_selector.dart';
 import '../widgets/portfolio_pie_chart.dart';
@@ -9,150 +16,113 @@ import '../widgets/holding_item.dart';
 import '../widgets/transaction_item.dart';
 
 class PortfolioScreen extends StatelessWidget {
-
   const PortfolioScreen({super.key});
-
-  // Static data
-  static const double totalValue = 143421.20;
-  static const double changeAmount = 305.20;
-  static const double changePercentage = 2.5;
-
-  static final List<Holding> holdings = [
-    Holding(
-      name: 'Bitcoin',
-      symbol: 'BTC',
-      iconPath: '',
-      amount: 0.05,
-      valueUSD: 2262.53,
-      changeAmount: 145.20,
-      changePercentage: 6.85,
-      percentage: 50,
-    ),
-    Holding(
-      name: 'Ethereum',
-      symbol: 'ETH',
-      iconPath: '',
-      amount: 1.5,
-      valueUSD: 3150.75,
-      changeAmount: 56.70,
-      changePercentage: 1.83,
-      percentage: 30,
-    ),
-    Holding(
-      name: 'Litecoin',
-      symbol: 'LTC',
-      iconPath: '',
-      amount: 26.3,
-      valueUSD: 2503.76,
-      changeAmount: 120.80,
-      changePercentage: 5.07,
-      percentage: 20,
-    ),
-  ];
-
-  static final List<Transaction> transactions = [
-    Transaction(
-      coinName: 'Bitcoin',
-      type: TransactionType.buy,
-      amount: 0.01,
-      symbol: 'BTC',
-      valueUSD: 452.50,
-      timeAgo: '2 hours ago',
-    ),
-    Transaction(
-      coinName: 'Ethereum',
-      type: TransactionType.sell,
-      amount: 0.5,
-      symbol: 'ETH',
-      valueUSD: 1050.25,
-      timeAgo: '1 day ago',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FA),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFF5F7FA),
-        elevation: 0,
-        title: const Text(
-          'Portfolio',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF1E3A5F),
+    return BlocProvider(
+      create: (context) => sl<PortfolioCubit>()..loadPortfolio(),
+      child: Scaffold(
+        backgroundColor: AppColors.greyBackground,
+        appBar: AppBar(
+          backgroundColor: AppColors.greyBackground,
+          elevation: 0,
+          title: Text(
+            AppStrings.portfolioScreenTitle,
+            style: AppTextStyles.bold32.copyWith(
+              color: AppColors.primary,
+            ),
           ),
+          toolbarHeight: 80,
         ),
-        toolbarHeight: 80,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Portfolio Value Card
-              const PortfolioValueCard(
-                totalValue: totalValue,
-                changeAmount: changeAmount,
-                changePercentage: changePercentage,
-              ),
+        body: BlocBuilder<PortfolioCubit, PortfolioState>(
+          builder: (context, state) {
+            final cubit = context.read<PortfolioCubit>();
 
-              const SizedBox(height: 24),
+            if (state is PortfolioLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-              // Month Selector
-              const MonthSelector(),
+            if (state is PortfolioError) {
+              return ErrorState(
+                title: AppStrings.errorLoadingPortfolio,
+                message: state.message,
+                onRetry: () => cubit.loadPortfolio(),
+              );
+            }
 
-              const SizedBox(height: 24),
+            if (state is PortfolioLoaded) {
+              final hasHoldings = state.holdings.isNotEmpty;
 
-              // Pie Chart
-              PortfolioPieChart(
-                totalValue: totalValue,
-                holdings: holdings,
-              ),
+              return RefreshIndicator(
+                onRefresh: () => cubit.loadPortfolio(),
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
 
-              const SizedBox(height: 32),
+                        PortfolioValueCard(
+                          totalValue: state.totalValue,
+                          changeAmount: state.totalChangeAmount,
+                          changePercentage: state.totalChangePercentage,
+                        ),
 
-              // My Holdings Section
-              const Text(
-                'My Holdings',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF1E3A5F),
+                        const SizedBox(height: 24),
+
+                        const MonthSelector(),
+
+                        const SizedBox(height: 24),
+
+                        PortfolioPieChart(
+                          totalValue: state.totalValue,
+                          holdings: state.holdings,
+                        ),
+
+                        const SizedBox(height: 32),
+
+                        Text(
+                          AppStrings.myHoldings,
+                          style: AppTextStyles.semiBold22.copyWith(
+                            color: AppColors.primary,
+                          ),
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        if (hasHoldings)
+                          ...state.holdings.map((holding) => HoldingItem(holding: holding))
+                        else
+                          EmptyHoldings(),
+
+                        const SizedBox(height: 32),
+
+                        Text(
+                          AppStrings.recentTransactions,
+                          style: AppTextStyles.semiBold22.copyWith(
+                            color: AppColors.primary,
+                          ),
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        ...state.transactions.map((transaction) => TransactionItem(transaction: transaction)),
+
+                        const SizedBox(height: 100),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              );
+            }
 
-              const SizedBox(height: 16),
-
-              // Holdings List
-              ...holdings.map((holding) => HoldingItem(holding: holding)),
-
-              const SizedBox(height: 32),
-
-              // Recent Transactions Section
-              const Text(
-                'Recent Transactions',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF1E3A5F),
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              // Transactions List
-              ...transactions.map((transaction) => TransactionItem(transaction: transaction)),
-
-              const SizedBox(height: 100),
-            ],
-          ),
+            return const SizedBox();
+          },
         ),
+        bottomNavigationBar: const BottomNavBar(currentIndex: 2),
       ),
-
-      bottomNavigationBar: const BottomNavBar(currentIndex: 2),
     );
   }
 }

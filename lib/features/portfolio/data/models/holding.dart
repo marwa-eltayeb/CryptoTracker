@@ -1,4 +1,5 @@
 class Holding {
+  final String coinId;
   final String name;
   final String symbol;
   final String iconPath;
@@ -9,6 +10,7 @@ class Holding {
   final double percentage;
 
   Holding({
+    required this.coinId,
     required this.name,
     required this.symbol,
     required this.iconPath,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/app_style.dart';
 import '../../../../core/constants/app_strings.dart';
@@ -12,6 +13,8 @@ class CoinItem extends StatelessWidget {
   final String price;
   final double priceChange;
   final VoidCallback? onTap;
+  final VoidCallback? onAddToPortfolio;
+
 
   const CoinItem({
     super.key,
@@ -22,6 +25,7 @@ class CoinItem extends StatelessWidget {
     required this.price,
     required this.priceChange,
     this.onTap,
+    this.onAddToPortfolio,
   });
 
   @override
@@ -32,6 +36,10 @@ class CoinItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
+      onLongPress: onAddToPortfolio != null ? () {
+        HapticFeedback.mediumImpact();
+        onAddToPortfolio!();
+      }: null,
       child: Container(
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.only(bottom: 12),

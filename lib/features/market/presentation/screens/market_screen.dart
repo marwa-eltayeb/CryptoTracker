@@ -8,8 +8,10 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/utils/snackbar_utils.dart';
 import '../../../../core/widgets/bottom_nav_bar.dart';
 import '../../../../core/widgets/error_state.dart';
+import '../../../portfolio/presentation/cubit/portfolio_cubit.dart';
 import '../cubit/market_cubit.dart';
 import '../cubit/market_states.dart';
+import '../widgets/add_holding_dialog.dart';
 import '../widgets/category_chip.dart';
 import '../widgets/coin_item.dart';
 import '../widgets/custom_search.dart';
@@ -197,7 +199,7 @@ class _MarketScreenState extends State<MarketScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 24),
                             itemCount: coins.length + (showLoadingIndicator ? 1 : 0) + (paginationError != null ? 1 : 0),
                             itemBuilder: (context, index) {
-                              // Show loading indicator for paginationImplement infinite scroll pagination for market coins
+                              // Show loading indicator for pagination
                               if (showLoadingIndicator && index == coins.length) {
                                 return const Padding(
                                   padding: EdgeInsets.symmetric(vertical: 32),
@@ -228,6 +230,22 @@ class _MarketScreenState extends State<MarketScreen> {
                                 priceChange: coin.priceChangePercentage24h,
                                 onTap: () {
                                   Navigator.pushNamed(context, Routes.details, arguments: coin.id);
+                                },
+                                onAddToPortfolio: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (dialogContext) => AddToPortfolioDialog(
+                                      coinId: coin.id,
+                                      coinName: coin.name,
+                                      coinSymbol: coin.symbol,
+                                      currentPrice: coin.currentPrice,
+                                      imageUrl: coin.image,
+                                      onAdd: (coinId, name, symbol, amount, imageUrl)  {
+                                        final portfolioCubit = sl<PortfolioCubit>();
+                                        portfolioCubit.addHolding(coinId, name, symbol, amount, imageUrl);
+                                      },
+                                    ),
+                                  );
                                 },
                               );
                             },

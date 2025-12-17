@@ -19,7 +19,7 @@ class APIConstants {
   static const String coinMarketChart = '/coins/{id}/market_chart';      // Price chart data
 
   // PORTFOLIO SCREEN
-  // static const String simplePrice = '/simple/price';                  // Live prices for holdings
+  static const String simplePrice = '/simple/price';                     // Live prices for holdings
 
 }
 
