@@ -21,5 +21,14 @@ class APIConstants {
   // PORTFOLIO SCREEN
   static const String simplePrice = '/simple/price';                     // Live prices for holdings
 
+  // PAYMOB PAYMENT
+  static const String paymobBaseUrl = 'https://accept.paymob.com/api';
+  static const String paymobAuthTokens = '/auth/tokens';
+  static const String paymobOrders = '/ecommerce/orders';
+  static const String paymobPaymentKeys = '/acceptance/payment_keys';
+  static const String paymobIframeUrl = 'https://accept.paymob.com/api/acceptance/iframes/908052';
+
+  static final String paymobApiKey = (dotenv.env['PAYMOB_API_KEY'] ?? '');
+  static final String paymobIntegrationId = (dotenv.env['PAYMOB_INTEGRATION_ID'] ?? '');
 }
 

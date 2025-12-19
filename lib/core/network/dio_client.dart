@@ -19,7 +19,9 @@ class DioClient {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          options.queryParameters['api_key'] = APIConstants.apiKey;
+          if (options.uri.toString().contains('coingecko') || options.path.contains('coingecko')) {
+            options.queryParameters['api_key'] = APIConstants.apiKey;
+          }
           return handler.next(options);
         },
       ),

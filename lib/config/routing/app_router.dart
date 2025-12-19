@@ -44,12 +44,9 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
 
       case Routes.payment:
-        return MaterialPageRoute(builder: (_) => PaymentScreen(
-          paymentBody: PaymentBody(),
-        ));
+        return MaterialPageRoute(builder: (_) => PaymentScreen(paymentBody: PaymentBody(userId: 'Samy Mohamed', amount: 230)));
       default:
         return null;
     }
   }
 }
-
