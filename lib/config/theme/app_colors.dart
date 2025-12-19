@@ -71,4 +71,6 @@ class AppColors {
   static const Color portfolioGradientEnd = Color(0xFF3D5A8F);
   static const Color white80 = Color.fromRGBO(255, 255, 255, 0.8);
 
+  static const Color paymentBackground = Color(0xFFF5F7FA);
+
 }

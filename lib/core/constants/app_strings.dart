@@ -140,5 +140,16 @@ class AppStrings {
   static const String remove = 'Remove';
   static const String removedFromPortfolio = 'Removed ';
 
+  // Payment
+  static const paymentMethod = "Payment Method";
+  static const buyNow = "Buy Now";
+  static const sendReceipt = "Send receipt via email";
+
+  // Payment Method List
+  static const String googlePaySettings = 'Google Pay Settings';
+  static const String mobileBankingSettings = 'Mobile Banking Settings';
+  static const String creditCard = 'Credit Card';
+  static const String googlePay = 'Google Pay';
+  static const String mobileBanking = 'Mobile Banking';
 
 }

@@ -9,4 +9,9 @@ class AppAssets {
   static const String onboardingThirdPage = 'assets/images/onboarding3.png';
   static const String onboardingFourthPage = 'assets/images/onboarding4.png';
 
+  // Payment Screen
+  static const visaCreditCard = "assets/images/visa_card.png";
+  static const visaLogo = "assets/images/visa_logo.png";
+  static const masterLogo = "assets/images/master_logo.png";
+  static const applePayLogo = "assets/images/apple_pay_logo.png";
 }
