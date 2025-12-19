@@ -13,4 +13,6 @@ class Routes {
   static const String portfolio = '/portfolio';
 
   static const String settings = '/settings';
+
+  static const String payment = '/payment';
 }

@@ -1,5 +1,7 @@
+import 'package:crypto_tracker/core/utils/snackbar_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../config/routing/routes.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/app_style.dart';
 import '../../../../core/constants/app_strings.dart';
@@ -330,11 +332,7 @@ class DetailsScreen extends StatelessWidget {
                                 label: AppStrings.sell,
                                 isPrimary: false,
                                 onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text(AppStrings.sellAction),
-                                    ),
-                                  );
+                                  SnackbarUtils.showSnackbar(context, AppStrings.sellAction);
                                 },
                               ),
                               const SizedBox(width: 16),
@@ -342,11 +340,7 @@ class DetailsScreen extends StatelessWidget {
                                 label: AppStrings.buy,
                                 isPrimary: true,
                                 onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text(AppStrings.buyAction),
-                                    ),
-                                  );
+                                  Navigator.pushNamed(context, Routes.payment);
                                 },
                               ),
                             ],
