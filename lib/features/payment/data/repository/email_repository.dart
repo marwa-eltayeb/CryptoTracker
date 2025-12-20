@@ -1,5 +1,7 @@
 import 'package:crypto_tracker/core/network/api_constant.dart';
-import 'package:emailjs/emailjs.dart' as emailjs;
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
+import '../../../../core/constants/email_templates.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/result.dart';
 
@@ -13,33 +15,28 @@ class EmailRepository {
     required String transactionId,
   }) async {
     try {
-      print('Sending Email === Starting ===');
-      print('Sending Email Service ID: ${APIConstants.serviceId}');
-      print('Sending Email Template ID: ${APIConstants.templateId}');
-      print('Sending Email Public Key: ${APIConstants.publicKey}');
-      print('Sending Email To Email: $userEmail');
-
-      final templateParams = {
-        'to_email': userEmail,
-        'amount': amount.toStringAsFixed(2),
-        'currency': currency,
-        'transaction_id': transactionId,
-        'date': DateTime.now().toString(),
-      };
-
-      print('Sending Email Template Params: $templateParams');
-
-      await emailjs.send(
-        APIConstants.serviceId,
-        APIConstants.templateId,
-        templateParams,
-        emailjs.Options(
-          publicKey: APIConstants.publicKey,
-          privateKey: APIConstants.privateKey,
-        ),
+      final smtpServer = SmtpServer(
+        APIConstants.smtpHost,
+        port: APIConstants.smtpPort,
+        username: APIConstants.smtpUsername,
+        password: APIConstants.smtpPassword,
       );
 
-      print('Sending Email SUCCESS!');
+      final formattedDate = DateTime.now().toString().split('.')[0];
+
+      final message = Message()
+        ..from = Address(APIConstants.smtpUsername, 'Crypto Tracker')
+        ..recipients.add(userEmail)
+        ..subject = 'Payment Receipt - Transaction #$transactionId'
+        ..html = EmailTemplates.paymentReceipt(
+          amount: amount,
+          currency: currency,
+          transactionId: transactionId,
+          date: formattedDate,
+        );
+
+      final sendReport = await send(message, smtpServer);
+      print('Sending Email SUCCESS! Message ID: ${sendReport.toString()}');
       return Success(true);
 
     } catch (e) {

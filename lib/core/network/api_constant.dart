@@ -32,11 +32,10 @@ class APIConstants {
   static final String paymobIntegrationId = (dotenv.env['PAYMOB_INTEGRATION_ID'] ?? '');
 
   // EMAILJS
-  static const String emailJSUrl = 'https://api.emailjs.com/api/v1.0/email/send';
-  static final String serviceId = dotenv.env['EMAILJS_SERVICE_ID'] ?? '';
-  static final String templateId = dotenv.env['EMAILJS_TEMPLATE_ID'] ?? '';
-  static final String publicKey = dotenv.env['EMAILJS_PUBLIC_KEY'] ?? '';
-  static final String privateKey = dotenv.env['EMAILJS_PRIVATE_KEY'] ?? '';
+  static final String smtpHost = dotenv.env['SMTP_HOST'] ?? 'smtp.gmail.com';
+  static final int smtpPort = int.parse(dotenv.env['SMTP_PORT'] ?? '587');
+  static final String smtpUsername = dotenv.env['SMTP_USERNAME'] ?? '';
+  static final String smtpPassword = dotenv.env['SMTP_PASSWORD'] ?? '';
 
 }
 
