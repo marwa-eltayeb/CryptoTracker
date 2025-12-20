@@ -3,15 +3,15 @@ import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/app_style.dart';
 import '../../../../core/constants/app_strings.dart';
 
-class SendReceipt extends StatefulWidget {
-  const SendReceipt({super.key});
+class SendReceipt extends StatelessWidget {
+  const SendReceipt({
+    super.key,
+    required this.value,
+    required this.onChanged,
+  });
 
-  @override
-  State<SendReceipt> createState() => _SendReceiptState();
-}
-
-class _SendReceiptState extends State<SendReceipt> {
-  bool value = false;
+  final bool value;
+  final ValueChanged<bool> onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +26,11 @@ class _SendReceiptState extends State<SendReceipt> {
           const Spacer(),
           Switch(
             value: value,
-            onChanged: _onChanged,
+            onChanged: onChanged,
             activeColor: AppColors.primary,
           )
         ],
       ),
     );
-  }
-
-  void _onChanged(value) {
-    setState(() {
-      this.value = value;
-    });
   }
 }

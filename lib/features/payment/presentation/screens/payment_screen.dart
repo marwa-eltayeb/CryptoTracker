@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../data/models/payment_body.dart';
+import '../../data/repository/email_repository.dart';
 import '../cubit/payment_cubit.dart';
 import '../cubit/payment_state.dart';
 import '../widgets/buy_button.dart';
@@ -12,21 +13,60 @@ import '../widgets/payment_header.dart';
 import '../widgets/payment_option_list.dart';
 import '../widgets/send_receipt.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key, required this.paymentBody});
 
   final PaymentBody paymentBody;
+
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
+  bool sendReceipt = false;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<PaymentCubit>(),
       child: BlocConsumer<PaymentCubit, PaymentState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is PaymentSuccess) {
             launchUrl(Uri.parse(state.paymentUrl));
+
+            // Send receipt email if user opted in
+            if (sendReceipt) {
+              final emailRepository = sl<EmailRepository>();
+              final result = await emailRepository.sendPaymentReceipt(
+                userEmail: widget.paymentBody.email,
+                amount: widget.paymentBody.amount,
+                currency: widget.paymentBody.currency,
+                transactionId: DateTime.now().millisecondsSinceEpoch.toString(),
+              );
+
+              result.fold(
+                    (failure) {
+                  SnackbarUtils.showSnackbar(
+                    context,
+                    'Payment successful! Failed to send receipt email.',
+                    backgroundColor: Colors.orange,
+                  );
+                },
+                    (success) {
+                  SnackbarUtils.showSnackbar(
+                    context,
+                    'Payment successful! Receipt sent to ${widget.paymentBody.email}',
+                    backgroundColor: Colors.green,
+                  );
+                },
+              );
+            }
           } else if (state is PaymentFailure) {
-            SnackbarUtils.showSnackbar(context, state.errorMessage, backgroundColor: AppColors.red);
+            SnackbarUtils.showSnackbar(
+              context,
+              state.errorMessage,
+              backgroundColor: AppColors.red,
+            );
           }
         },
         builder: (context, state) {
@@ -48,14 +88,21 @@ class PaymentScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SendReceipt(),
+                    SendReceipt(
+                      value: sendReceipt,
+                      onChanged: (value) {
+                        setState(() {
+                          sendReceipt = value;
+                        });
+                      },
+                    ),
                     SizedBox(height: 20),
                     state is PaymentLoading
                         ? Center(child: CircularProgressIndicator())
                         : BuyButton(
-                      paymentBody: paymentBody,
+                      paymentBody: widget.paymentBody,
                       onPressed: () {
-                        context.read<PaymentCubit>().processPayment(paymentBody);
+                        context.read<PaymentCubit>().processPayment(widget.paymentBody);
                       },
                     ),
                     SizedBox(height: 16),

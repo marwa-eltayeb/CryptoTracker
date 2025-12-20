@@ -4,6 +4,7 @@ import '../../features/details/presentation/cubit/details_cubit.dart';
 import '../../features/home/data/repository/home_repository.dart';
 import '../../features/market/data/repository/market_repository.dart';
 import '../../features/market/presentation/cubit/market_cubit.dart';
+import '../../features/payment/data/repository/email_repository.dart';
 import '../../features/payment/data/repository/payment_repository.dart';
 import '../../features/payment/presentation/cubit/payment_cubit.dart';
 import '../../features/portfolio/data/repository/portfolio_repository.dart';
@@ -26,6 +27,7 @@ void initializeDependencies() {
   sl.registerLazySingleton(() => DetailsRepository(apiService: sl()));
   sl.registerLazySingleton(() => PortfolioRepository(apiService: sl(), portfolioStorage: sl()));
   sl.registerLazySingleton(() => PaymentRepository(apiService: sl()));
+  sl.registerLazySingleton(() => EmailRepository());
 
   // Cubits
   sl.registerFactory(() => HomeCubit(repository: sl()));

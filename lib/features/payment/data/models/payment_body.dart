@@ -13,7 +13,7 @@ class PaymentBody {
     this.currency = 'EGP',
     this.firstName = 'Clifford',
     this.lastName = 'Nicolas',
-    this.email = 'claudette09@exa.com',
+    this.email = 'test@gmail.com',
     this.phoneNumber = '+86(8)9135210487',
   });
 
