@@ -72,7 +72,7 @@ class RemoveHoldingDialog extends StatelessWidget {
             Navigator.pop(context);
             onRemove();
             // Show success message
-            SnackbarUtils.showSnackbar(context, '${AppStrings.removedFromPortfolio}${holding.name}${AppStrings.fromYourPortfolio}',);
+            SnackBarUtils.showSnackBar(context, '${AppStrings.removedFromPortfolio}${holding.name}${AppStrings.fromYourPortfolio}',);
           },
           child: Text(
             AppStrings.remove,
