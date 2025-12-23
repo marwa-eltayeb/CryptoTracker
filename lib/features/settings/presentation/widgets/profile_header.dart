@@ -3,10 +3,10 @@ import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/app_style.dart';
 
 class ProfileHeader extends StatelessWidget {
-  final String? imageUrl;
+  final String imageUrl;
   final String name;
 
-  const ProfileHeader({super.key, this.imageUrl, required this.name});
+  const ProfileHeader({super.key, required this.imageUrl, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +27,10 @@ class ProfileHeader extends StatelessWidget {
             ],
           ),
 
-          child: Image.asset(
-            imageUrl!,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Center(
-                child: Text(
-                  name.isNotEmpty ? name[0].toUpperCase() : 'S',
-                  style: AppTextStyles.bold48.copyWith(color: AppColors.white),
-                ),
-              );
-            },
+          child: CircleAvatar(
+            radius: 60,
+            backgroundColor: AppColors.primary.withOpacity(0.1),
+            backgroundImage: NetworkImage(imageUrl),
           ),
         ),
 
@@ -53,3 +46,4 @@ class ProfileHeader extends StatelessWidget {
     );
   }
 }
+

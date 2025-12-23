@@ -227,10 +227,10 @@ class _AddToPortfolioDialogState extends State<AddToPortfolioDialog> {
               );
               Navigator.pop(context);
               // Show success message
-              SnackbarUtils.showSnackbar(context, '${AppStrings.addedToPortfolio}$amount ${widget.coinSymbol}${AppStrings.toPortfolio}');
+              SnackBarUtils.showSnackBar(context, '${AppStrings.addedToPortfolio}$amount ${widget.coinSymbol}${AppStrings.toPortfolio}');
             } else {
               // Show error
-              SnackbarUtils.showSnackbar(context, AppStrings.pleaseEnterValidAmount);
+              SnackBarUtils.showSnackBar(context, AppStrings.pleaseEnterValidAmount);
             }
           },
           child: Text(

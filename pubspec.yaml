@@ -21,11 +21,16 @@ dependencies:
   get_it: ^7.7.0
   # Networking
   dio: ^5.4.0
-  # Security & Storage
+  # Secure Storage
   flutter_secure_storage: ^9.2.1
+  # Persistent Storage
   shared_preferences: ^2.3.2
+  # Biometric Authentication
   local_auth: ^2.2.0
+  # Device Info
   device_info_plus: ^10.1.0
+  # Root Check
+  root_check_flutter: ^1.0.5
   # Firebase (Auth)
   firebase_core: ^2.24.2
   firebase_auth: ^4.17.9
@@ -41,6 +46,8 @@ dependencies:
   url_launcher: ^6.3.1
   # Send Email
   mailer: ^6.0.1
+  # Cryptography
+  crypto: ^3.0.3
 
 dev_dependencies:
   flutter_test:

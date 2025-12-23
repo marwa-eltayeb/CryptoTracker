@@ -14,4 +14,13 @@ class AppAssets {
   static const visaLogo = "assets/images/visa_logo.png";
   static const masterLogo = "assets/images/master_logo.png";
   static const applePayLogo = "assets/images/apple_pay_logo.png";
+
+  static const faceIdBackground = 'assets/images/face_id_background.png';
+
+  static const String faceIdIcon = 'assets/icons/face_id_icon.svg';
+  static const String fingerprintIcon = 'assets/icons/fingerprint_icon.svg';
+
+  // Settings Screen
+  static const String profileImagePath = 'assets/images/profile.png';
+
 }

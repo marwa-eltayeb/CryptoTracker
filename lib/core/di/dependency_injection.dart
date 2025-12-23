@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import '../../features/auth/data/repository/auth_repository.dart';
+import '../../features/auth/data/repository/auth_repository_impl.dart';
+import '../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../features/details/data/repository/details_repository.dart';
 import '../../features/details/presentation/cubit/details_cubit.dart';
 import '../../features/home/data/repository/home_repository.dart';
@@ -20,6 +24,7 @@ void initializeDependencies() {
   sl.registerLazySingleton(() => DioClient.createDio());
   sl.registerLazySingleton(() => ApiService(sl()));
   sl.registerLazySingleton(() => PortfolioStorage());
+  sl.registerLazySingleton(() => FirebaseAuth.instance);
 
   // Repositories
   sl.registerLazySingleton(() => HomeRepository(apiService: sl()));
@@ -28,6 +33,7 @@ void initializeDependencies() {
   sl.registerLazySingleton(() => PortfolioRepository(apiService: sl(), portfolioStorage: sl()));
   sl.registerLazySingleton(() => PaymentRepository(apiService: sl()));
   sl.registerLazySingleton(() => EmailRepository());
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
 
   // Cubits
   sl.registerFactory(() => HomeCubit(repository: sl()));
@@ -35,5 +41,6 @@ void initializeDependencies() {
   sl.registerFactory(() => DetailsCubit(repository: sl()));
   sl.registerFactory(() => PortfolioCubit(repository: sl()));
   sl.registerFactory(() => PaymentCubit(repository: sl()));
+  sl.registerFactory(() => AuthCubit(sl<AuthRepository>()),);
 
 }

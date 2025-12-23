@@ -46,14 +46,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
               result.fold(
                     (failure) {
-                  SnackbarUtils.showSnackbar(
+                  SnackBarUtils.showSnackBar(
                     context,
                     'Payment successful! Failed to send receipt email.',
                     backgroundColor: Colors.orange,
                   );
                 },
                     (success) {
-                  SnackbarUtils.showSnackbar(
+                  SnackBarUtils.showSnackBar(
                     context,
                     'Payment successful! Receipt sent to ${widget.paymentBody.email}',
                     backgroundColor: Colors.green,
@@ -62,7 +62,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               );
             }
           } else if (state is PaymentFailure) {
-            SnackbarUtils.showSnackbar(
+            SnackBarUtils.showSnackBar(
               context,
               state.errorMessage,
               backgroundColor: AppColors.red,

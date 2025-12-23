@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/widgets/bottom_nav_bar.dart';
 import '../../../../core/widgets/error_state.dart';
+import '../../../auth/presentation/cubit/auth_cubit.dart';
+import '../../../auth/presentation/cubit/auth_state.dart';
 import '../widgets/home_header.dart';
 import '../widgets/balance_card.dart';
 import '../widgets/market_overview_section.dart';
@@ -42,10 +44,14 @@ class HomeScreen extends StatelessWidget {
               }
 
               if (state is HomeLoaded) {
+                // Get username from AuthCubit
+                final authState = context.watch<AuthCubit>().state;
+                final userName = authState is AuthAuthenticated ? (authState.user.username?.isNotEmpty == true ? authState.user.username! : 'User') : 'User';
+
                 return SingleChildScrollView(
                   child: Column(
                     children: [
-                      HomeHeader(userName: 'Marwa'),
+                      HomeHeader(userName: userName),
                       const SizedBox(height: 16),
                       BalanceCard(
                         balance: AppStrings.defaultBalance,

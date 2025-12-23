@@ -1,9 +1,14 @@
+import 'package:crypto_tracker/core/constants/app_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../config/routing/routes.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/app_style.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/utils/snackbar_utils.dart';
 import '../../../../core/widgets/bottom_nav_bar.dart';
+import '../../../auth/presentation/cubit/auth_cubit.dart';
+import '../../../auth/presentation/cubit/auth_state.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/settings_item.dart';
 import '../widgets/settings_toggle.dart';
@@ -22,6 +27,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final authState = context.watch<AuthCubit>().state;
+    final userName = authState is AuthAuthenticated ? (authState.user.username?.isNotEmpty == true ? authState.user.username! : 'User') : 'User';
+    final userPhoto = authState is AuthAuthenticated ? authState.user.photoUrl : null;
+
     return Scaffold(
       backgroundColor: AppColors.greyBackground,
       appBar: AppBar(
@@ -44,10 +54,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const SizedBox(height: 20),
 
               // Profile Header
-              const Center(
+              Center(
                 child: ProfileHeader(
-                  imageUrl: AppStrings.profileImagePath,
-                  name: AppStrings.sophiaIsabella,
+                  imageUrl: userPhoto ?? AppAssets.profileImagePath,
+                  name: userName,
                 ),
               ),
 
@@ -68,7 +78,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       icon: Icons.person_outline,
                       title: AppStrings.myAccount,
                       onTap: () {
-                        SnackbarUtils.showSnackbar(context, AppStrings.navigateToMyAccount);
+                        Navigator.pushNamed(context, Routes.myAccount);
                       },
                     ),
 
@@ -78,7 +88,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       icon: Icons.account_balance_wallet_outlined,
                       title: AppStrings.billingPayment,
                       onTap: () {
-                        SnackbarUtils.showSnackbar(context, AppStrings.navigateToBillingPayment);
+                        SnackBarUtils.showSnackBar(context, AppStrings.navigateToBillingPayment);
                       },
                     ),
 
@@ -88,7 +98,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       icon: Icons.help_outline,
                       title: AppStrings.faqSupport,
                       onTap: () {
-                        SnackbarUtils.showSnackbar(context, AppStrings.navigateToFaqSupport);
+                        SnackBarUtils.showSnackBar(context, AppStrings.navigateToFaqSupport);
                       },
                     ),
 
@@ -112,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       icon: Icons.language,
                       title: AppStrings.language,
                       onTap: () {
-                        SnackbarUtils.showSnackbar(context, AppStrings.navigateToLanguage);
+                        SnackBarUtils.showSnackBar(context, AppStrings.navigateToLanguage);
                       },
                     ),
 

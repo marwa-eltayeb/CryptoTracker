@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../config/routing/routes.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/app_style.dart';
 import '../../../../core/constants/app_strings.dart';
@@ -18,6 +19,7 @@ class OnboardingActionButtons extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               // Navigate to login
+              Navigator.pushReplacementNamed(context, Routes.login);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
@@ -43,6 +45,7 @@ class OnboardingActionButtons extends StatelessWidget {
           child: OutlinedButton(
             onPressed: () {
               // Navigate to register
+              Navigator.pushReplacementNamed(context, Routes.register);
             },
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.primary,
@@ -60,7 +63,6 @@ class OnboardingActionButtons extends StatelessWidget {
             ),
           ),
         ),
-
       ],
     );
   }

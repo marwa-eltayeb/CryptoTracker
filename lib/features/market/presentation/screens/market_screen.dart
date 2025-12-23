@@ -73,7 +73,7 @@ class _MarketScreenState extends State<MarketScreen> {
                     controller: _searchController,
                     hintText: AppStrings.searchCoinsHint,
                     onChanged: (value) => cubit.searchCoins(value),
-                    onFilterTap: () => SnackbarUtils.showSnackbar(context, AppStrings.filterTapped),
+                    onFilterTap: () => SnackBarUtils.showSnackBar(context, AppStrings.filterTapped),
                   ),
                 ),
 
@@ -94,7 +94,7 @@ class _MarketScreenState extends State<MarketScreen> {
                           isSelected: _selectedCategoryIndex == index,
                           onTap: () {
                             setState(() {
-                              SnackbarUtils.showSnackbar(context, _categories[index]);
+                              SnackBarUtils.showSnackBar(context, _categories[index]);
                               _selectedCategoryIndex = index;
                             });
                           },

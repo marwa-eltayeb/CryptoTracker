@@ -332,7 +332,7 @@ class DetailsScreen extends StatelessWidget {
                                 label: AppStrings.sell,
                                 isPrimary: false,
                                 onPressed: () {
-                                  SnackbarUtils.showSnackbar(context, AppStrings.sellAction);
+                                  SnackBarUtils.showSnackBar(context, AppStrings.sellAction);
                                 },
                               ),
                               const SizedBox(width: 16),

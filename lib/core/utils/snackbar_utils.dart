@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SnackbarUtils {
-  SnackbarUtils._();
+class SnackBarUtils {
+  SnackBarUtils._();
 
-  static void showSnackbar(
+  static void showSnackBar(
       BuildContext context,
       String message, {
         Color backgroundColor = Colors.black87,

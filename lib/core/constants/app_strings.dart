@@ -90,7 +90,6 @@ class AppStrings {
   static const String language = 'Language';
   static const String darkMode = 'Dark Mode';
   static const String sophiaIsabella = 'Sophia Isabella';
-  static const String profileImagePath = 'assets/images/profile.jpg';
 
   // Settings Actions
   static const String navigateToMyAccount = 'Navigate to My Account';
@@ -151,5 +150,41 @@ class AppStrings {
   static const String creditCard = 'Credit Card';
   static const String googlePay = 'Google Pay';
   static const String mobileBanking = 'Mobile Banking';
+
+  // Auth Screens
+  static const String createYourAccount = 'Create Your Account';
+  static const String signUpToEnjoy = 'Sign up to enjoy the best managing\nexperience!';
+  static const String loginToYourAccount = 'Login To Your Account';
+  static const String welcomeBackMissed = 'Welcome back you\'ve\nbeen missed!';
+  static const String firstName = 'First Name';
+  static const String lastName = 'Last Name';
+  static const String emailID = 'Email-ID';
+  static const String emailIDHint = 'E-mail ID';
+  static const String password = 'Password';
+  static const String confirmPassword = 'Confirm Password';
+  static const String phoneNumberHint = 'XXX XXX XXXX';
+  static const String rememberMe = 'Remember me';
+  static const String forgetPassword = 'Forget Password?';
+  static const String orLoginWith = 'Or login with';
+  static const String dontHaveAccount = 'Don\'t have an account? ';
+  static const String signUp = 'Sign Up';
+  static const String alreadyHaveAccount = 'Already have an account? ';
+  static const String loginLink = 'login';
+  static const String deviceSecurityViolation = 'Device security violation detected. App cannot run.';
+
+  // My Account Screen
+  static const String myAccountTitle = 'My Account';
+  static const String editProfile = 'Edit Profile';
+  static const String changePassword = 'Change Password';
+  static const String securitySettings = 'Security Settings';
+  static const String logout = 'Logout';
+  static const String logoutDialogTitle = 'Logout';
+  static const String logoutDialogMessage = 'Are you sure you want to logout?';
+  static const String defaultUserName = 'User';
+
+  // Coming Soon Messages
+  static const String editProfileComingSoon = 'Edit Profile - Coming soon';
+  static const String changePasswordComingSoon = 'Change Password - Coming soon';
+  static const String securitySettingsComingSoon = 'Security Settings - Coming soon';
 
 }
