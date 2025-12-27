@@ -60,7 +60,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthAuthenticated) {
-            Navigator.pushReplacementNamed(context, Routes.home);
+            Navigator.pushReplacementNamed(
+              context,
+              Routes.biometric,
+              arguments: true,
+            );
           } else if (state is AuthError) {
             SnackBarUtils.showSnackBar(context, state.message, backgroundColor: AppColors.red);
           }

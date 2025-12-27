@@ -127,3 +127,7 @@ class ServerFailure extends Failures {
   }
 }
 
+class BiometricFailure extends Failures {
+  BiometricFailure({required super.errMessage});
+}
+

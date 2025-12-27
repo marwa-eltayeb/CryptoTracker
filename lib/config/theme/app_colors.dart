@@ -10,6 +10,7 @@ class AppColors {
   static const Color black = Colors.black;
 
   // Grey scale
+  static const Color grey = Color(0xFF9E9E9E);
   static const Color grey100 = Color(0xFFF5F5F5);
   static const Color greyLight = Color(0xFFE0E0E0);
   static const Color greyMedium = Color(0xFF757575);
@@ -72,5 +73,11 @@ class AppColors {
   static const Color white80 = Color.fromRGBO(255, 255, 255, 0.8);
 
   static const Color paymentBackground = Color(0xFFF5F7FA);
+
+  // Biometric Screen Colors
+  static const Color biometricBackground = Color(0xFFF4F6FA);
+  static const Color biometricCircle = Color(0xFFE8EAF0);
+  static const Color biometricTitle = Color(0xFF1E3A5F);
+  static const Color biometricSubtitle = Color(0xFF6B7C93);
 
 }

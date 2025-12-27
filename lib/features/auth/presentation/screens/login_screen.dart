@@ -202,8 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             AuthIconButton(
                               iconPath: AppAssets.fingerprintIcon,
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, Routes.biometric);
+                                Navigator.pushNamed(context, Routes.biometric);
                               },
                             ),
 
@@ -212,8 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             AuthIconButton(
                               iconPath: AppAssets.faceIdIcon,
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, Routes.faceId);
+                                Navigator.pushNamed(context, Routes.faceId);
                               },
                             ),
                           ],

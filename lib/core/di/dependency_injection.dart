@@ -1,5 +1,8 @@
+import 'package:crypto_tracker/features/auth/presentation/cubit/biometric_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../features/auth/data/repository/auth_repository.dart';
 import '../../features/auth/data/repository/auth_repository_impl.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
@@ -20,11 +23,13 @@ import '../storage/portfolio_storage.dart';
 
 final sl = GetIt.instance;
 
-void initializeDependencies() {
+void initializeDependencies() async {
   sl.registerLazySingleton(() => DioClient.createDio());
   sl.registerLazySingleton(() => ApiService(sl()));
   sl.registerLazySingleton(() => PortfolioStorage());
   sl.registerLazySingleton(() => FirebaseAuth.instance);
+  sl.registerLazySingleton<LocalAuthentication>(() => LocalAuthentication());
+  sl.registerSingletonAsync<SharedPreferences>(() async => await SharedPreferences.getInstance(),);
 
   // Repositories
   sl.registerLazySingleton(() => HomeRepository(apiService: sl()));
@@ -33,7 +38,7 @@ void initializeDependencies() {
   sl.registerLazySingleton(() => PortfolioRepository(apiService: sl(), portfolioStorage: sl()));
   sl.registerLazySingleton(() => PaymentRepository(apiService: sl()));
   sl.registerLazySingleton(() => EmailRepository());
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl(), sl(), sl()));
 
   // Cubits
   sl.registerFactory(() => HomeCubit(repository: sl()));
@@ -41,6 +46,10 @@ void initializeDependencies() {
   sl.registerFactory(() => DetailsCubit(repository: sl()));
   sl.registerFactory(() => PortfolioCubit(repository: sl()));
   sl.registerFactory(() => PaymentCubit(repository: sl()));
-  sl.registerFactory(() => AuthCubit(sl<AuthRepository>()),);
+  sl.registerLazySingleton(() => AuthCubit(sl()));
+  sl.registerFactory(() => BiometricCubit(sl<AuthRepository>(), sl<AuthCubit>()));
 
+
+  // Ensure all async singletons are ready
+  await sl.allReady();
 }

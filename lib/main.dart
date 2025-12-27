@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,9 +53,7 @@ class MyApp extends StatelessWidget {
             builder: (context, child) {
               return BlocListener<AuthCubit, AuthState>(
                 listener: (context, state) {
-                  print('[SESSION] Auth state changed: ${state.runtimeType}');
                   if (state is AuthUnauthenticated) {
-                    print('[SESSION] Navigating to login screen...');
                     navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.login, (route) => false,);
                   }
                 },

@@ -187,4 +187,20 @@ class AppStrings {
   static const String changePasswordComingSoon = 'Change Password - Coming soon';
   static const String securitySettingsComingSoon = 'Security Settings - Coming soon';
 
+  // Biometric Screen
+  static const String setYourFingerPrint = 'Set Your Finger Print';
+  static const String addFingerprintSecurity = 'Add a fingerprint to make your account\nmore secure.';
+  static const String touchIDSensorVerify = 'Touch ID sensor to verify yourself';
+  static const String biometricNotAvailable = 'Biometric authentication is not available on this device';
+  static const String scanningComplete = 'Your scanning is complete\n\nyou will be able to sign in by using fingerprint';
+  static const String youreVerified = 'You\'re verified\n\nYou have been verified your information completely. Let\'s make transactions!';
+  static const String placeFinger = 'Place your finger in fingerprint\nsensor until the icon completely';
+  static const String verifyIdentityTouchID = 'Please verify your identity using touch\nID and it will proceed automatically.';
+  static const String continueText = 'Continue';
+  static const String continueToHome = 'Continue To Home';
+  static const String biometricError = 'Error: ';
+  static const String goBack = 'Go Back';
+  static const String registerFingerprintReason = 'Register your fingerprint for future logins';
+  static const String verifyIdentityReason = 'Verify your identity to continue';
+
 }
