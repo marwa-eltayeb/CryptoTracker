@@ -47,11 +47,12 @@ class HomeScreen extends StatelessWidget {
                 // Get username from AuthCubit
                 final authState = context.watch<AuthCubit>().state;
                 final userName = authState is AuthAuthenticated ? (authState.user.username?.isNotEmpty == true ? authState.user.username! : 'User') : 'User';
+                final userPhoto = authState is AuthAuthenticated ? authState.user.photoUrl : null;
 
                 return SingleChildScrollView(
                   child: Column(
                     children: [
-                      HomeHeader(userName: userName),
+                      HomeHeader(userName: userName, userPhoto: userPhoto),
                       const SizedBox(height: 16),
                       BalanceCard(
                         balance: AppStrings.defaultBalance,

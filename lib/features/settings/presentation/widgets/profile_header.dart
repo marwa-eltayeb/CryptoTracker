@@ -26,11 +26,11 @@ class ProfileHeader extends StatelessWidget {
               ),
             ],
           ),
-
           child: CircleAvatar(
             radius: 60,
             backgroundColor: AppColors.primary.withOpacity(0.1),
             backgroundImage: NetworkImage(imageUrl),
+            child: Icon(Icons.person, size: 24, color: AppColors.primary),
           ),
         ),
 
