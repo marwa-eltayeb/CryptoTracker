@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:local_auth/local_auth.dart';
 import '../../data/repository/auth_repository.dart';
 import 'auth_cubit.dart';
 import 'biometric_state.dart';
@@ -9,11 +10,20 @@ class BiometricCubit extends Cubit<BiometricState> {
 
   BiometricCubit(this._repository, this._authCubit) : super(BiometricInitial());
 
-  Future<void> checkAvailability() async {
+  Future<void> checkAvailability({BiometricType? specificType}) async {
     emit(BiometricCheckingAvailability());
 
     try {
-      final isAvailable = await _repository.isBiometricAvailable();
+      bool isAvailable;
+
+      if (specificType == BiometricType.face) {
+        isAvailable = await _repository.isFaceIDAvailable();
+      } else if (specificType == BiometricType.fingerprint) {
+        isAvailable = await _repository.isFingerprintAvailable();
+      } else {
+        isAvailable = await _repository.isBiometricAvailable();
+      }
+
       emit(BiometricAvailable(isAvailable: isAvailable));
     } catch (e) {
       emit(BiometricAvailable(isAvailable: false));
@@ -24,11 +34,15 @@ class BiometricCubit extends Cubit<BiometricState> {
     required String userId,
     required String reason,
     bool savePreference = false,
+    BiometricType? specificType,
   }) async {
     emit(BiometricScanning());
 
     try {
-      final authenticated = await _repository.authenticateWithBiometric(reason);
+      final authenticated = await _repository.authenticateWithBiometric(
+        reason,
+        specificType: specificType,
+      );
 
       if (authenticated) {
         if (savePreference) {

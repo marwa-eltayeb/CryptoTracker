@@ -134,19 +134,49 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> authenticateWithBiometric(String reason) async {
+  Future<List<BiometricType>> getAvailableBiometrics() async {
+    try {
+      return await _localAuth.getAvailableBiometrics();
+    } catch (e) {
+      return [];
+    }
+  }
+
+  @override
+  Future<bool> isFaceIDAvailable() async {
+    try {
+      final isSupported = await _localAuth.isDeviceSupported();
+      if (!isSupported) return false;
+      final biometrics = await getAvailableBiometrics();
+      return biometrics.contains(BiometricType.face) || biometrics.contains(BiometricType.weak);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> isFingerprintAvailable() async {
+    try {
+      final biometrics = await getAvailableBiometrics();
+      return biometrics.contains(BiometricType.fingerprint) || biometrics.contains(BiometricType.strong);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> authenticateWithBiometric(String reason, {BiometricType? specificType}) async {
     try {
       return await _localAuth.authenticate(
         localizedReason: reason,
         options: const AuthenticationOptions(
           stickyAuth: true,
           biometricOnly: true,
+          useErrorDialogs: true,
         ),
       );
     } on Exception catch (e) {
-      throw BiometricFailure(
-        errMessage: 'Biometric authentication failed: ${e.toString()}',
-      );
+      throw BiometricFailure(errMessage: 'Biometric authentication failed: ${e.toString()}',);
     }
   }
 

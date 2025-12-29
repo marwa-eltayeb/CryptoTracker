@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:local_auth/local_auth.dart';
 import '../../../../config/routing/routes.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/app_style.dart';
@@ -79,7 +80,7 @@ class _BiometricScreenState extends State<BiometricScreen> {
                   }
 
                   if (state is BiometricSkipped && isFromRegister) {
-                    _navigateToHome();
+                    _navigateToNextStep();
                   }
                 },
                 builder: (context, state) {
@@ -179,6 +180,7 @@ class _BiometricScreenState extends State<BiometricScreen> {
 
     return BiometricIcon(
       iconState: iconState,
+      type: BiometricType.fingerprint,
       onTap: canTap ? _handleBiometricScan : null,
     );
   }
@@ -195,7 +197,7 @@ class _BiometricScreenState extends State<BiometricScreen> {
       return BiometricStatusText(
         message: isFromRegister
             ? AppStrings.scanningComplete
-            : AppStrings.youreVerified,
+            : AppStrings.youAreVerifiedBiometric,
         color: AppColors.biometricSubtitle,
       );
     }
@@ -212,7 +214,7 @@ class _BiometricScreenState extends State<BiometricScreen> {
     if (state is BiometricSuccess) {
       return BiometricActionButton(
         text: isFromRegister ? AppStrings.continueText : AppStrings.continueToHome,
-        onPressed: _navigateToHome,
+        onPressed: _navigateToNextStep,
         isPrimary: true,
       );
     }
@@ -278,13 +280,15 @@ class _BiometricScreenState extends State<BiometricScreen> {
     _biometricCubit.skip(userId);
   }
 
-  void _navigateToHome() async {
-    if (!isFromRegister && _biometricCubit.state is BiometricSuccess) {
-      await _biometricCubit.completeLogin();
+  void _navigateToNextStep() async {
+    if (isFromRegister) {
+      Navigator.pushNamedAndRemoveUntil(context, Routes.faceId, arguments: true, (route) => false);
+    } else {
+      if (_biometricCubit.state is BiometricSuccess) {
+        await _biometricCubit.completeLogin();
+      }
+      Navigator.pushNamedAndRemoveUntil(context, Routes.home, (route) => false);
     }
-
-    Navigator.pushNamedAndRemoveUntil(context, Routes.home, (route) => false);
   }
 }
 
-enum BiometricIconState { idle, scanning, complete }

@@ -193,7 +193,9 @@ class AppStrings {
   static const String touchIDSensorVerify = 'Touch ID sensor to verify yourself';
   static const String biometricNotAvailable = 'Biometric authentication is not available on this device';
   static const String scanningComplete = 'Your scanning is complete\n\nyou will be able to sign in by using fingerprint';
-  static const String youreVerified = 'You\'re verified\n\nYou have been verified your information completely. Let\'s make transactions!';
+  static const String yourAreVerified = 'You\'re verified';
+  static const String yourHaveBeenVerified = 'You have been verified your information completely. Let\'s make transactions!';
+  static const String youAreVerifiedBiometric = 'You\'re verified\n\nYou have been verified your information completely. Let\'s make transactions!';
   static const String placeFinger = 'Place your finger in fingerprint\nsensor until the icon completely';
   static const String verifyIdentityTouchID = 'Please verify your identity using touch\nID and it will proceed automatically.';
   static const String continueText = 'Continue';
@@ -202,5 +204,16 @@ class AppStrings {
   static const String goBack = 'Go Back';
   static const String registerFingerprintReason = 'Register your fingerprint for future logins';
   static const String verifyIdentityReason = 'Verify your identity to continue';
+
+  // Face ID Screen
+  static const String setYourFaceID = 'Set Your Face ID';
+  static const String addFaceIDSecurity = 'Add your face ID to make your account more secure.';
+  static const String faceID = 'Face ID';
+  static const String youreReady = 'You\'re Ready!';
+  static const String placeFaceIDInScanner = 'Place your face ID in face\nscanner until the icon completely';
+  static const String scanningCompleteSignIn = 'Once your scanning is complete, you will\nbe able to sign in by using face ID';
+  static const String pleaseWaitScanning = 'Please wait until your scanning is\ncomplete';
+  static const String registerFaceIDReason = 'Register your Face ID for secure access';
+  static const String verifyFaceIDReason = 'Verify your identity using Face ID';
 
 }

@@ -24,7 +24,7 @@ class AppTextStyles {
   // BOLD 24
   static const TextStyle bold24 = TextStyle(
     fontSize: 24,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
   );
 
   // BOLD 20

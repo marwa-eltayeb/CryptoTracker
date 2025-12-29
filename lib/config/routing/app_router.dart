@@ -33,10 +33,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
 
       case Routes.biometric:
-        return MaterialPageRoute(builder: (_) => const BiometricScreen(), settings: settings,);
+        return MaterialPageRoute(builder: (_) => const BiometricScreen(), settings: settings);
 
       case Routes.faceId:
-        return MaterialPageRoute(builder: (_) => const FaceIdScreen());
+        return MaterialPageRoute(builder: (_) => const FaceIdScreen(), settings: settings);
 
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
