@@ -1,3 +1,4 @@
+import 'package:crypto_tracker/core/security/session_manager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,19 +45,23 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Crypto Tracker',
             navigatorKey: navigatorKey,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            ),
+            theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),),
             initialRoute: Routes.splash,
             onGenerateRoute: AppRouter().generateRoute,
             builder: (context, child) {
-              return BlocListener<AuthCubit, AuthState>(
-                listener: (context, state) {
-                  if (state is AuthUnauthenticated) {
-                    navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.login, (route) => false,);
-                  }
-                },
-                child: child ?? const SizedBox.shrink(),
+              return Listener(
+                behavior: HitTestBehavior.translucent,
+                onPointerDown: (_) => SessionManager.updateActivity(),
+                child: BlocListener<AuthCubit, AuthState>(
+                  listener: (context, state) {
+                    if (state is AuthUnauthenticated) {
+                      if (context.read<AuthCubit>().previousState is AuthAuthenticated) {
+                        navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.login, (route) => false);
+                      }
+                    }
+                  },
+                  child: child ?? const SizedBox.shrink(),
+                ),
               );
             },
           );
