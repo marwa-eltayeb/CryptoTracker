@@ -35,6 +35,8 @@ class TrendingCoinItem extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+
         children: [
 
           // Header: Name, Symbol + Icon
@@ -42,25 +44,29 @@ class TrendingCoinItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Name + Symbol
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-
-                  Text(
-                    name,
-                    style: AppTextStyles.semiBold16.copyWith(
-                      color: AppColors.black,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                
+                    Text(
+                      name,
+                      maxLines: 1,
+                      style: AppTextStyles.semiBold16.copyWith(
+                        color: AppColors.black,
+                        height: 1.1,
+                      ),
                     ),
-                  ),
-
-                  Text(
-                    symbol,
-                    style: AppTextStyles.regular14.copyWith(
-                      color: AppColors.greyMedium,
+                
+                    Text(
+                      symbol,
+                      style: AppTextStyles.regular14.copyWith(
+                        color: AppColors.greyMedium,
+                      ),
                     ),
-                  ),
-
-                ],
+                
+                  ],
+                ),
               ),
 
               SizedBox(width: 8),
