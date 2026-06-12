@@ -27,6 +27,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _confirmPasswordController = TextEditingController();
   final _phoneController = TextEditingController();
 
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
+
   @override
   void dispose() {
     _firstNameController.dispose();
@@ -152,20 +155,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               const SizedBox(height: 16),
 
                               AuthTextField(
+                                controller: _passwordController,
                                 hintText: AppStrings.password,
                                 icon: Icons.lock_outline,
                                 isPassword: true,
-                                controller: _passwordController,
+                                isPasswordVisible: _isPasswordVisible,
+                                onTogglePasswordVisibility: () {
+                                  setState(() => _isPasswordVisible = !_isPasswordVisible);
+                                },
                                 validator: Validator.validatePassword,
                               ),
 
                               const SizedBox(height: 16),
 
                               AuthTextField(
+                                controller: _confirmPasswordController,
                                 hintText: AppStrings.confirmPassword,
                                 icon: Icons.lock_outline,
                                 isPassword: true,
-                                controller: _confirmPasswordController,
+                                isPasswordVisible: _isConfirmPasswordVisible,
+                                onTogglePasswordVisibility: () {
+                                  setState(() => _isConfirmPasswordVisible = !_isConfirmPasswordVisible);
+                                },
                                 validator: (val) => Validator.validateConfirmPassword(val, _passwordController.text),
                               ),
 

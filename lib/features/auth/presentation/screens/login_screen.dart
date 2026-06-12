@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _rememberMe = false;
+  bool _isPasswordVisible = false;
 
   @override
   void dispose() {
@@ -105,20 +106,26 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 80),
 
                         AuthTextField(
+                          controller: _emailController,
                           hintText: AppStrings.emailIDHint,
                           icon: Icons.email_outlined,
                           keyboardType: TextInputType.emailAddress,
-                          controller: _emailController,
                           validator: Validator.validateEmail,
                         ),
 
                         const SizedBox(height: 20),
 
                         AuthTextField(
+                          controller: _passwordController,
                           hintText: AppStrings.password,
                           icon: Icons.lock_outline,
                           isPassword: true,
-                          controller: _passwordController,
+                          isPasswordVisible: _isPasswordVisible,
+                          onTogglePasswordVisibility: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });
+                          },
                           validator: Validator.validatePassword,
                         ),
 
