@@ -1,3 +1,5 @@
+import 'package:crypto_tracker/config/theme/app_colors.dart';
+import 'package:crypto_tracker/config/theme/app_style.dart';
 import 'package:crypto_tracker/core/utils/snackbar_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,8 +10,6 @@ import 'package:crypto_tracker/features/auth/presentation/widgets/primary_button
 import 'package:crypto_tracker/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:crypto_tracker/features/auth/presentation/cubit/auth_state.dart';
 import 'package:crypto_tracker/config/routing/routes.dart';
-import '../../../../config/theme/app_colors.dart';
-import '../../../../config/theme/app_style.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -193,8 +193,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               const SizedBox(height: 32),
 
                               // Register Button
-                              state is AuthLoading ? const Center(child: CircularProgressIndicator(),)
-                                  : PrimaryButton(
+                              state is AuthLoading ? const Center(child: CircularProgressIndicator(),) : PrimaryButton(
                                 text: AppStrings.register,
                                 onPressed: () => _handleRegister(),
                               ),

@@ -1,16 +1,16 @@
-// bottom_nav_bar.dart
+import 'package:crypto_tracker/config/theme/app_colors.dart';
+import 'package:crypto_tracker/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
-import '../../config/routing/routes.dart';
-import '../../config/theme/app_colors.dart';
-import '../constants/app_strings.dart';
 import 'nav_bar_item.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
+  final ValueChanged<int> onTap;
 
   const BottomNavBar({
     super.key,
     required this.currentIndex,
+    required this.onTap,
   });
 
   @override
@@ -36,41 +36,25 @@ class BottomNavBar extends StatelessWidget {
               icon: Icons.home,
               label: AppStrings.homeScreenTitle,
               isSelected: currentIndex == 0,
-              onTap: () {
-                if (currentIndex != 0) {
-                  Navigator.pushReplacementNamed(context, Routes.home);
-                }
-              },
+              onTap: () => onTap(0),
             ),
             NavBarItem(
               icon: Icons.bar_chart,
               label: AppStrings.marketScreenTitle,
               isSelected: currentIndex == 1,
-              onTap: () {
-                if (currentIndex != 1) {
-                  Navigator.pushReplacementNamed(context, Routes.market);
-                }
-              },
+              onTap: () => onTap(1),
             ),
             NavBarItem(
               icon: Icons.business_center,
               label: AppStrings.portfolioScreenTitle,
               isSelected: currentIndex == 2,
-              onTap: () {
-                if (currentIndex != 2) {
-                  Navigator.pushReplacementNamed(context, Routes.portfolio);
-                }
-              },
+              onTap: () => onTap(2),
             ),
             NavBarItem(
               icon: Icons.settings,
               label: AppStrings.settingsScreenTitle,
               isSelected: currentIndex == 3,
-              onTap: () {
-                if (currentIndex != 3) {
-                  Navigator.pushReplacementNamed(context, Routes.settings);
-                }
-              },
+              onTap: () => onTap(3),
             ),
           ],
         ),

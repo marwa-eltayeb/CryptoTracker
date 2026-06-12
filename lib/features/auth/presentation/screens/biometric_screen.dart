@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:local_auth/local_auth.dart';
-import '../../../../config/routing/routes.dart';
-import '../../../../config/theme/app_colors.dart';
-import '../../../../config/theme/app_style.dart';
-import '../../../../core/constants/app_strings.dart';
-import '../../../../core/di/dependency_injection.dart';
-import '../cubit/auth_cubit.dart';
-import '../cubit/auth_state.dart';
-import '../cubit/biometric_cubit.dart';
-import '../cubit/biometric_state.dart';
-import '../widgets/biometric_Icon.dart';
-import '../widgets/biometric_action_button.dart';
-import '../widgets/biometric_status_text.dart';
+import 'package:crypto_tracker/config/routing/routes.dart';
+import 'package:crypto_tracker/config/theme/app_colors.dart';
+import 'package:crypto_tracker/config/theme/app_style.dart';
+import 'package:crypto_tracker/core/constants/app_strings.dart';
+import 'package:crypto_tracker/core/di/dependency_injection.dart';
+import 'package:crypto_tracker/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:crypto_tracker/features/auth/presentation/cubit/auth_state.dart';
+import 'package:crypto_tracker/features/auth/presentation/cubit/biometric_cubit.dart';
+import 'package:crypto_tracker/features/auth/presentation/cubit/biometric_state.dart';
+import 'package:crypto_tracker/features/auth/presentation/widgets/biometric_icon.dart';
+import 'package:crypto_tracker/features/auth/presentation/widgets/biometric_action_button.dart';
+import 'package:crypto_tracker/features/auth/presentation/widgets/biometric_status_text.dart';
 
 class BiometricScreen extends StatefulWidget {
   const BiometricScreen({super.key});
@@ -287,7 +287,7 @@ class _BiometricScreenState extends State<BiometricScreen> {
       if (_biometricCubit.state is BiometricSuccess) {
         await _biometricCubit.completeLogin();
       }
-      Navigator.pushNamedAndRemoveUntil(context, Routes.home, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, Routes.main, (route) => false);
     }
   }
 }

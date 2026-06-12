@@ -1,5 +1,8 @@
+import 'package:crypto_tracker/config/theme/app_colors.dart';
+import 'package:crypto_tracker/config/theme/app_style.dart';
 import 'package:crypto_tracker/core/constants/app_assets.dart';
 import 'package:crypto_tracker/core/constants/app_strings.dart';
+import 'package:crypto_tracker/core/utils/snackbar_utils.dart';
 import 'package:crypto_tracker/core/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,9 +12,6 @@ import 'package:crypto_tracker/features/auth/presentation/widgets/auth_icon_butt
 import 'package:crypto_tracker/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:crypto_tracker/features/auth/presentation/cubit/auth_state.dart';
 import 'package:crypto_tracker/config/routing/routes.dart';
-import '../../../../config/theme/app_colors.dart';
-import '../../../../config/theme/app_style.dart';
-import '../../../../core/utils/snackbar_utils.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthAuthenticated) {
-            Navigator.pushReplacementNamed(context, Routes.home);
+            Navigator.pushReplacementNamed(context, Routes.main);
           } else if (state is AuthError) {
             SnackBarUtils.showSnackBar(context, state.message, backgroundColor: AppColors.red);
           }

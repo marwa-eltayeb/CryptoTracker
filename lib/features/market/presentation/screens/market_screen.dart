@@ -1,20 +1,19 @@
 import 'package:crypto_tracker/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../config/routing/routes.dart';
-import '../../../../config/theme/app_colors.dart';
-import '../../../../config/theme/app_style.dart';
-import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/utils/snackbar_utils.dart';
-import '../../../../core/widgets/bottom_nav_bar.dart';
-import '../../../../core/widgets/error_state.dart';
-import '../../../portfolio/presentation/cubit/portfolio_cubit.dart';
-import '../cubit/market_cubit.dart';
-import '../cubit/market_states.dart';
-import '../widgets/add_holding_dialog.dart';
-import '../widgets/category_chip.dart';
-import '../widgets/coin_item.dart';
-import '../widgets/custom_search.dart';
+import 'package:crypto_tracker/config/routing/routes.dart';
+import 'package:crypto_tracker/config/theme/app_colors.dart';
+import 'package:crypto_tracker/config/theme/app_style.dart';
+import 'package:crypto_tracker/core/di/dependency_injection.dart';
+import 'package:crypto_tracker/core/utils/snackbar_utils.dart';
+import 'package:crypto_tracker/core/widgets/error_state.dart';
+import 'package:crypto_tracker/features/portfolio/presentation/cubit/portfolio_cubit.dart';
+import 'package:crypto_tracker/features/market/presentation/cubit/market_cubit.dart';
+import 'package:crypto_tracker/features/market/presentation/cubit/market_states.dart';
+import 'package:crypto_tracker/features/market/presentation/widgets/add_holding_dialog.dart';
+import 'package:crypto_tracker/features/market/presentation/widgets/category_chip.dart';
+import 'package:crypto_tracker/features/market/presentation/widgets/coin_item.dart';
+import 'package:crypto_tracker/features/market/presentation/widgets/custom_search.dart';
 
 class MarketScreen extends StatefulWidget {
   const MarketScreen({super.key});
@@ -260,7 +259,6 @@ class _MarketScreenState extends State<MarketScreen> {
               ],
             ),
           ),
-          bottomNavigationBar: const BottomNavBar(currentIndex: 1),
         );
       }),
     );

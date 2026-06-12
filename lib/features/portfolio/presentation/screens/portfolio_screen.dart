@@ -121,7 +121,6 @@ class PortfolioScreen extends StatelessWidget {
             return const SizedBox();
           },
         ),
-        bottomNavigationBar: const BottomNavBar(currentIndex: 2),
       ),
     );
   }

@@ -1,18 +1,17 @@
 import 'package:crypto_tracker/core/constants/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../config/routing/routes.dart';
-import '../../../../config/theme/app_colors.dart';
-import '../../../../config/theme/app_style.dart';
-import '../../../../core/constants/app_strings.dart';
-import '../../../../core/utils/snackbar_utils.dart';
-import '../../../../core/widgets/bottom_nav_bar.dart';
-import '../../../auth/presentation/cubit/auth_cubit.dart';
-import '../../../auth/presentation/cubit/auth_state.dart';
-import '../widgets/profile_header.dart';
-import '../widgets/settings_item.dart';
-import '../widgets/settings_toggle.dart';
-import '../widgets/section_header.dart';
+import 'package:crypto_tracker/config/routing/routes.dart';
+import 'package:crypto_tracker/config/theme/app_colors.dart';
+import 'package:crypto_tracker/config/theme/app_style.dart';
+import 'package:crypto_tracker/core/constants/app_strings.dart';
+import 'package:crypto_tracker/core/utils/snackbar_utils.dart';
+import 'package:crypto_tracker/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:crypto_tracker/features/auth/presentation/cubit/auth_state.dart';
+import 'package:crypto_tracker/features/settings/presentation/widgets/profile_header.dart';
+import 'package:crypto_tracker/features/settings/presentation/widgets/settings_item.dart';
+import 'package:crypto_tracker/features/settings/presentation/widgets/settings_toggle.dart';
+import 'package:crypto_tracker/features/settings/presentation/widgets/section_header.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -147,8 +146,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-
-      bottomNavigationBar: const BottomNavBar(currentIndex: 3),
     );
   }
 }
